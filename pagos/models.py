@@ -4,11 +4,10 @@ from datetime import date
 
 # Modelo Base Abstracto
 class PagoBase(models.Model):
-    usuario = models.ForeignKey(User, on_delete=models.CASCADE, related_name="pagos")
     monto = models.DecimalField(max_digits=10, decimal_places=2)
     concepto = models.CharField(max_length=255)  # Corregido de max_lenght a max_length
     estado = models.CharField(
-        max_length=50,  # Corregido de max_lenght a max_length
+        max_length=50,
         choices=[
             ('pendiente', 'Pendiente'),
             ('completado', 'Completado'),
@@ -35,20 +34,25 @@ class PagoBase(models.Model):
     
     def obtener_prioridad(self):
         if self.prioridad == 1:
-            return "Urgente-Importante"
+            return f"Urgente-Importante"
         elif self.prioridad == 2:
-            return "NoUrgente-Importante"
+            return f"NoUrgente-Importante"
         elif self.prioridad == 3:
             return "Urgente-NoImportante"
         elif self.prioridad == 4:
-            return "NoUrgente-NoImportante"
+            return f"NoUrgente-NoImportante"
         else:
-            return "Sin prioridad definida"
+            return f"Sin prioridad definida"
 
 
 
 # Modelo para Pagos Únicos
 class PagoUnico(PagoBase):
+    usuario = models.ForeignKey(
+        User, 
+        on_delete=models.CASCADE, 
+        related_name="pagos_unicos"  # Nombre único para este modelo
+    )
     fecha = models.DateField()
 
     def __str__(self):
@@ -57,9 +61,13 @@ class PagoUnico(PagoBase):
     def esta_vencido(self):
         return self.fecha < date.today()
 
-
 # Modelo para Pagos Recurrentes
 class PagoRecurrente(PagoBase):
+    usuario = models.ForeignKey(
+        User, 
+        on_delete=models.CASCADE, 
+        related_name="pagos_recurrentes"  # Nombre único para este modelo
+    )
     frecuencia = models.CharField(
         max_length=50,
         choices=[
@@ -71,7 +79,7 @@ class PagoRecurrente(PagoBase):
     fecha_inicio = models.DateField()
     fecha_fin = models.DateField(null=True, blank=True)
     tipo = models.CharField(
-        max_length=50,  # Corregido de max_lenght a max_length
+        max_length=50,
         choices=[
             ('entretenimiento', 'Entretenimiento'),
             ('Salud', 'Salud'),
@@ -80,16 +88,6 @@ class PagoRecurrente(PagoBase):
         ],
         default='pendiente',
     )
-    def calcular_proximo_vencimiento(self):
-        # Lógica para calcular la próxima fecha de pago
-        pass
-
-    def __str__(self):
-        return f"Pago Recurrente: {self.concepto} - {self.monto} - Frecuencia: {self.frecuencia}"
-    
-    @classmethod
-    def filtrar_por_tipo(cls, tipo, usuario):
-        return cls.objects.filter(tipo=tipo, usuario=usuario, estado='pendiente')
 
     def calcular_proximo_vencimiento(self):
         if self.frecuencia == 'mensual':
@@ -105,4 +103,17 @@ class PagoRecurrente(PagoBase):
 
         return proximo_vencimiento
 
+    def __str__(self):
+        return f"Pago Recurrente: {self.concepto} - {self.monto} - Frecuencia: {self.frecuencia}"
+
+    
+class Usuario(models.Model):
+    usuario = models.OneToOneField(User, on_delete=models.CASCADE, related_name='usuario')
+    nombre_com = models.CharField(max_length=100)  # Nombre completo
+    num_cel = models.CharField(max_length=15, blank=True, null=True)  # Número de celular
+    Na = models.CharField(max_length=100, blank=True, null=True)  # Personaliza "Na"
+    fecha_nac = models.DateField(blank=True, null=True)  # Fecha de nacimiento
+
+    def __str__(self):
+        return f"{self.nombre_com} ({self.usuario.email})"
     

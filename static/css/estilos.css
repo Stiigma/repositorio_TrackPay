@@ -1,0 +1,381 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@100;200;300;400;500&display=swap');
+
+/* Reset de estilos basicos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+/* Tipografias generales */
+body {
+    font-family: "Bebas Neue", "Arial", sans-serif;
+}
+
+p {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    color: #424242;
+    margin-bottom: 35px;
+}
+
+/* Contenedor principal */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* --- Estilos del Header --- */
+.header {
+    background: linear-gradient(180deg, rgb(60, 116, 172) 0%, rgba(84, 131, 179, 0.5) 51%, rgba(84, 131, 179, 0) 100%);
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    position: relative;
+    padding: 20px 0;
+}
+
+
+.header-content {
+    padding: 100px 0;
+    display: flex;
+    align-items: center;
+}
+
+.header-txt {
+    width: 50%;
+    padding-right: 100px;
+}
+
+.header-txt h1 {
+    font-size: 50px;
+    line-height: 60px;
+    color: #FFFFFF;
+    margin-bottom: 25px;
+}
+
+.header-img {
+    width: 50%;
+    text-align: center;
+}
+
+.header-img img {
+    width: 500px;
+}
+
+/* --- Menu y navegacion --- */
+.menu {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo img {
+    width: 250px;
+}
+
+.menu .navbar ul li {
+    position: relative;
+    float: left;
+}
+.menu .navbar ul li {
+    list-style: none;
+}
+
+.menu .navbar ul {
+    display: flex;
+    gap: 20px;
+}
+.menu .navbar ul li a {
+    font-size: 18px;
+    font-weight: 400;
+    color: #fff;
+    padding: 10px 15px;
+    transition: color 0.3s ease;
+}
+
+/* --- Botones de navegacion y login --- */
+.login {
+    display: flex;
+    gap: 10px;
+}
+
+.login li {
+    list-style: none;
+    display: inline-block;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.btn-1, .btn-ent, .btn-comen {
+    display: inline-block;
+    padding: 10px 12px;
+    border-radius: 15px;
+    font-size: 15px;
+    color: #FFFFFF;
+}
+
+.btn-1 {
+    background-color: #062659;
+    padding: 13px 30px;
+}
+
+.btn-ent {
+    background-color: #022661;
+}
+
+.btn-comen {
+    background-color: #023992;
+}
+
+.btn-1:hover, .btn-ent:hover, .btn-comen:hover {
+    background-color: #013e80;
+}
+
+/* --- Seccion About --- */
+.about {
+    padding: 100px 0;
+    background-color: #EFEFEF;
+}
+
+.about-content {
+    display: flex;
+    position: relative;
+}
+
+.about-img {
+    width: 50%;
+    text-align: center;
+}
+
+.about-img img {
+    width: 350px;
+}
+
+.about-txt {
+    width: 50%;
+}
+
+h2 {
+    font-size: 80px;
+    line-height: 90px;
+    color: #3f3f3f;
+    margin-bottom: 25px;
+}
+
+.btn-2 {
+    display: inline-block;
+    padding: 13px 45px;
+    background-color: #062659;
+    color: #FFFFFF;
+    border-radius: 25px;
+    border: 0;
+    font-family: 'Bebas Neue', cursive;
+    cursor: pointer;
+}
+
+.btn-2:hover {
+    background-color: #0056b3;
+}
+
+/* --- Estilos decorativos en About --- */
+.ab1, .ab2, .ab3 {
+    position: absolute;
+}
+
+.ab1 {
+    width: 50px;
+    left: 0;
+    top: 0;
+    transform: rotate(220deg);
+}
+
+.ab2 {
+    width: 50px;
+    left: 750px;
+    top: 450px;
+    transform: rotate(380deg);
+}
+
+.ab3 {
+    width: 150px;
+    right: 0;
+}
+
+/* --- Seccion Informacion --- */
+.infortion {
+    padding: 100px 400px 400px 400px;
+    text-align: center;
+    background-color: #FBFBFB;
+}
+
+.information-content {
+    position: relative;
+}
+
+/* Estilos decorativos en Informacion */
+.in1, .in2, .int3 {
+    position: absolute;
+}
+
+.in1 {
+    width: 50px;
+    left: 0;
+    right: 0;
+    transform: rotate(220deg);
+}
+
+.in2 {
+    width: 50px;
+    right: 0;
+    top: 0;
+    transform: rotate(40deg);
+}
+
+.int3 {
+    width: 250px;
+    left: 0;
+    top: 230px;
+    transform: rotate(220deg);
+}
+
+.contact{
+    padding: 50px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.contact-table{
+    padding: 25px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 700px;
+    margin-top: -400px;
+
+}
+
+.contact-table span{
+    font-size: 40px;
+    color: #0056b3;
+}
+
+.contact-table h3{
+    font-size: 60px;
+    color: #3F3F3F;
+    margin-bottom: 25px;
+}
+
+table{
+    text-align: left;
+}
+
+.suscripciones{
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.suscripciones td, .suscripciones th{
+    border: 1px solid #DDDDDD;
+    padding: 8px;
+
+}
+
+.suscripciones tr:nth-child(even){
+    background-color: #F2F2F2;
+}
+
+.suscripciones tr:hover{
+    background-color: #E6E6E6;
+}
+
+
+.suscripciones th{
+    padding-top: 12px 0;
+}
+
+form{
+    display: flex;
+
+}
+
+.campo{
+    padding: 17PX 25PX;
+    background-color: #F7F7F7;
+    border-radius: 25px;
+    margin-right: 15px;
+    border: 1px solid #E6E6E6;
+    outline: none;
+    color: #3F3F3F;
+}
+
+.campo::placeholder{
+    color: #A3A3A3;
+}
+
+.form-content{
+    padding: 100px 0 70px 0;
+    text-align: center;
+}
+
+.form-content h2{
+    font-size: 50px;
+    color: #3F3F3F;
+    margin-bottom: 25px;
+}
+
+/* --- Footer --- */
+.footer {
+    background-color: #232b47; /* Fondo oscuro */
+    color: #FFFFFF; /* Texto blanco */
+    padding: 50px 20px; /* Espaciado alrededor */
+    display: flex; /* Usamos flexbox para la disposición */
+    justify-content: space-between; /* Distribuir espacio entre columnas */
+    align-items: flex-start; /* Alinear elementos al inicio */
+}
+
+/* Sección izquierda: Logo */
+.footer .footer-left {
+    flex: 1; /* Ocupa una proporción del espacio disponible */
+    text-align: left; /* Alinear a la izquierda */
+}
+
+.footer .footer-left img {
+    max-width: 150px; /* Ajustar el tamaño del logo */
+    height: auto; /* Mantener proporción */
+}
+
+/* Sección central: Elementos en líneas de tres */
+.footer .footer-center {
+    flex: 2; /* Ocupa más espacio que el logo */
+    text-align: center; /* Centrar elementos */
+    display: flex; /* Usar flexbox para los elementos internos */
+    flex-wrap: wrap; /* Permitir que los elementos se ajusten a la siguiente línea */
+    gap: 20px; /* Espaciado entre elementos */
+    justify-content: center; /* Centrar elementos horizontalmente */
+}
+
+.footer .footer-center div {
+    width: calc(33.33% - 20px); /* Cada elemento ocupa un tercio del ancho */
+    text-align: center; /* Centrar texto dentro de cada elemento */
+    color: #0b7cbd; /* Color de texto */
+    font-size: 16px; /* Tamaño de fuente */
+}
+
+/* Ajustes responsivos para pantallas pequeñas */
+@media (max-width: 768px) {
+    .footer {
+        flex-direction: column; /* Cambiar disposición a columna */
+        align-items: center; /* Centrar elementos */
+    }
+
+    .footer .footer-center div {
+        width: 100%; /* Ocupa todo el ancho en pantallas pequeñas */
+    }
+}

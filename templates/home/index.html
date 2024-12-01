@@ -1,0 +1,102 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TrackPay</title>
+    <link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+</head>
+<body>
+    
+<header class="header">
+    <div class="menu container">
+        <!-- Corregido para usar la ruta estática de la imagen -->
+        <a href="#" class="logo"><img src="{% static 'img/logoNombre.png' %}" alt="TrackPay Logo"></a>
+        <nav class="navbar">
+            <ul>
+                <li><a href="#">Inicio</a></li>
+                <li><a href="#">Funcionamiento</a></li>
+                <li><a href="#">Acerca</a></li>
+                <li><a href="#">Precios</a></li>
+                <li><a href="#">Blog</a></li>
+            </ul>
+        </nav>
+        <div class="login">
+            <ul>
+                <li><a href="{% url 'login' %}" class="btn-ent">Entrar</a></li>
+                <li><a href="#" class="btn-comen">Comenzar Ahora</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="header-content container">
+        <div class="header-txt">
+            <h1>Todas tus suscripciones en un solo lugar</h1>
+            <p>Mantén tus suscripciones bajo control, sin sorpresas ni olvidos. ¡Todo en un solo lugar, fácil y rápido!</p>
+            <a href="#" class="btn-1">Agregar suscripciones</a>
+        </div>
+        <!-- Corregido para usar la ruta estática de la imagen -->
+        <div class="header-img">
+            <img src="{% static 'img/logo.png' %}" alt="TrackPay">
+        </div>
+    </div>
+</header>
+
+<section class="about">
+    <div class="about-content container">
+        <!-- Usando las imágenes desde la carpeta estática -->
+        <img class="ab1" src="{% static 'img/money.png' %}" alt="">
+        <img class="ab2" src="{% static 'img/money.png' %}" alt="">
+        <img class="ab3" src="{% static 'img/money.png' %}" alt="">
+        <div class="about-img">
+            <!-- Usando la ruta estática de la imagen -->
+            <img src="{% static 'img/servicios.jpg' %}" alt="">
+        </div>
+        <div class="about-txt">
+            <h2> Deja de pagar meses que pensabas cancelar</h2>
+            <p>Olvídate de buscar fechas de pago en diferentes plataformas y de perder el control de tus gastos. 
+                Te ayudamos a estar siempre informado para que puedas decidir con tiempo qué servicios quieres conservar y cuáles cancelar.
+                ¡Gestiona tus suscripciones de manera sencilla y ahorra cada mes!
+                <br>Alertas a correo antes de su pago
+                <br>Personaliza periodos y notificaciones
+                <br>Alertas a varios correos
+            </p>
+            <a href="#" class="btn-2">Empieza Ahora Gratis</a>
+        </div>
+    </div>
+</section>
+
+<section class="infortion">
+    <div class="information-content container">
+        <!-- Usando imágenes desde la carpeta estática -->
+        <img class="in1" src="{% static 'img/money.png' %}" alt="">
+        <img class="in2" src="{% static 'img/money.png' %}" alt="">
+        <img class="in3" src="{% static 'img/money.png' %}" alt="">
+        <h2>Información</h2>
+        <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+            Omnis temporibus quo beatae optio expedita culpa quaerat repellat soluta, quibusdam excepturi possimus, 
+            et debitis! Perferendis magni debitis enim laborum id esse!
+        </p>
+    </div>
+</section>
+
+
+<footer class="footer">
+    <div class="footer-left">
+        <img src="{% static 'img/logoNombre.png' %}" alt="Logo de TrackPay">
+    </div>
+    <div class="footer-center">
+        <div>Informacion</div>
+        <div>tendencias </div>
+        <div>acerda de nosotros </div>
+        <div>conoce mas </div>
+        <div>suscripciones</div>
+        <div>Metodos de pagos</div>
+        <div>Tendencias </div>
+        <div>Elementos</div>
+        <div>privacidad</div>
+    </div>
+</footer>
+</body>
+</html>

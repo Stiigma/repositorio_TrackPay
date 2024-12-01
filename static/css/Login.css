@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@100;200;300;400;500&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+body {
+    background: linear-gradient(180deg, rgb(59, 123, 187) 0%, rgba(84, 131, 179, 0.5) 51%, rgba(84, 131, 179, 0) 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container {
+    background: linear-gradient(175deg, rgb(253, 253, 253) 0%, rgba(94, 175, 255, 0.5) 51%, rgba(77, 153, 230, 0) 60%);
+    padding: 2rem;
+    width: 900px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    text-align: center;
+}
+
+.login-container h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    color: #000b2e;
+}
+
+.login-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem; /* Reduce la distancia entre imagen y formulario */
+    margin-bottom: 1.5rem;
+}
+
+.login-image img {
+    width: 500px;
+    height: auto;
+}
+
+form {
+    flex: 1;
+    text-align: left;
+}
+
+.input-field {
+    margin-bottom: 1.5rem;
+}
+
+.input-field input {
+    width: 100%;
+    padding: 0.8rem;
+    border: 1px solid #3e8dd8;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    outline: none;
+    transition: 0.3s;
+}
+
+.input-field input:focus {
+    border-color: #0f71cc;
+    box-shadow: 0 0 5px rgba(93, 155, 214, 0.5);
+}
+
+/* Estilo para Restablecer Contraseña */
+.reset-password {
+    display: block;
+    text-align: center;
+    margin: 0.5rem 0; /* Espaciado vertical */
+    font-size: 0.9rem;
+    color: #666;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.reset-password:hover {
+    color: #034f96;
+}
+
+/* Botones separados */
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.button-container .btn-primary,
+.button-container .btn-secondary {
+    width: calc(50% - 0.5rem);
+    padding: 0.8rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.3s;
+    text-align: center;
+}
+
+.btn-primary {
+    background: #034f96;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #074980;
+}
+
+.btn-secondary {
+    background: #f1f1f1;
+    color: #333;
+    border: 1px solid #ccc;
+}
+
+.btn-secondary:hover {
+    background: #e1e1e1;
+}

@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="{% static 'css/re.css' %}">
+  <title>Formulario Registro</title>
+</head>
+<body>
+  <main class="registro-container">
+    <h2>Formulario Registro</h2>
+    <div class="registro-content">
+      <h4>Formulario Registro</h4>
+      <form method="post">
+        {% csrf_token %}
+        <div class="input-field">
+          {{ form.username.label_tag }}
+          {{ form.username }}
+        </div>
+        <div class="input-field">
+          {{ form.email.label_tag }}
+          {{ form.email }}
+        </div>
+        <div class="input-field">
+          {{ form.password.label_tag }}
+          {{ form.password }}
+        </div>
+        <div class="input-field">
+          {{ form.nombre_com.label_tag }}
+          {{ form.nombre_com }}
+        </div>
+        <div class="input-field">
+          {{ form.num_cel.label_tag }}
+          {{ form.num_cel }}
+        </div>
+        <div class="input-field">
+          {{ form.Na.label_tag }}
+          {{ form.Na }}
+        </div>
+        <div class="input-field">
+          {{ form.fecha_nac.label_tag }}
+          {{ form.fecha_nac }}
+        </div>
+        <div class="button-container">
+          <button type="submit" class="btn-primary">Registrar</button>
+        </div>
+        <a href="{% url 'login' %}" class="already-account">¿Ya tengo Cuenta?</a> 
+      </form>
+    </div>
+  </main>
+</body>
+</html>
