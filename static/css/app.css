@@ -263,6 +263,31 @@ h1 {
     color: red;
 }
 
+.modal-body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Espaciado entre secciones */
+}
+
+/* Sección de perfil */
+.profile-section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.profile-img-large {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+
+.profile-info {
+    font-size: 16px;
+    color: #333;
+}
 /* Formularios */
 .form {
     display: flex;
@@ -326,4 +351,89 @@ h1 {
         opacity: 1;
         transform: scale(1);
     }
+}
+
+
+#config-modal .modal-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Dos columnas iguales */
+    gap: 20px; /* Espaciado entre columnas */
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    width: 700px; /* Ancho del modal */
+    max-width: 90%;
+    position: relative;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para cada columna */
+.config-left,
+.config-right {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Espaciado entre los elementos */
+}
+
+/* Encabezado del modal */
+#config-modal .modal-header {
+    grid-column: 1 / -1; /* El encabezado ocupa las dos columnas */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #427ff0;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px 5px 0 0;
+}
+
+#config-modal .modal-header h3 {
+    margin: 0;
+    font-size: 22px;
+}
+
+#config-modal .modal-close {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: white;
+}
+
+#config-modal .modal-close:hover {
+    color: red;
+}
+
+/* Botones del modal */
+.config-footer {
+    grid-column: 1 / -1; /* El pie ocupa las dos columnas */
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.config-footer button {
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.config-footer .edit-btn {
+    background-color: #427ff0;
+    color: white;
+}
+
+.config-footer .edit-btn:hover {
+    background-color: #0041a3;
+}
+
+.config-footer .logout-btn {
+    background-color: #a70404;
+    color: white;
+}
+
+.config-footer .logout-btn:hover {
+    background-color: #900303;
 }

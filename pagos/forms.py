@@ -96,7 +96,7 @@ class LoginForm(forms.Form):
 class PagoUnicoForm(forms.ModelForm):
     class Meta:
         model = PagoUnico
-        fields = ['concepto', 'monto','fecha_fin', 'hora', 'prioridad', 'tipo']
+        fields = ['concepto', 'monto','fecha', 'hora', 'prioridad', 'tipo']
         widgets = {
             'concepto': forms.TextInput(attrs={
                 'class': 'controls',

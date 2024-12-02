@@ -32,11 +32,81 @@
                     <h3>Configuración</h3>
                     <button class="modal-close" id="close-config-modal">&times;</button>
                 </div>
-                <p>Aquí puedes configurar tu cuenta. Agrega las opciones necesarias para personalizar la experiencia del usuario.</p>
+                    <!-- Columna izquierda -->
+                        <div class="config-left">
+                        <label>Foto de Usuario:</label>
+                        <div style="width: 100px; height: 100px; background-color: #ddd; border-radius: 50%;"></div>
+                        <label>Usuario:</label>
+                        <div>Miguel Martínez</div>
+                        <label>Nombre Completo:</label>
+                        <input type="text" value="Miguel Ángel Martínez López">
+                    </div>
+                
+                    <!-- Columna derecha -->
+                    <div class="config-right">
+                        <label>Número de Celular:</label>
+                        <input type="text" value="+34 612 345 678">
+                        <label>Correo:</label>
+                        <input type="email" value="miguel.martinez@example.com">
+                        <label>Nacionalidad:</label>
+                        <input type="text" value="Española">
+                        <label>Total de Pagos Activos:</label>
+                        <input type="text" value="5">
+                    </div>
+                
+                    <!-- Pie del modal -->
+                    <div class="config-footer">
+                        <button class="edit-btn">Editar Información</button>
+                        <button class="logout-btn">Cerrar Sesión</button>
+                    </div>
             </div>
         </div>
     </header>
-
+        <!-- Modal de Edición de Suscripción -->
+    <div id="edit-subscription-modal" class="modal">
+        <div class="modal-inner">
+            <div class="modal-header">
+                <h3>Editar Suscripción</h3>
+                <button class="modal-close" id="close-edit-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form class="edit-subscription-form">
+                    <div class="form-group">
+                        <label for="subscription-name">Nombre</label>
+                        <input type="text" id="subscription-name" name="subscription-name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subscription-date">Fecha de Vencimiento</label>
+                        <input type="date" id="subscription-date" name="subscription-date" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subscription-temporality">Temporalidad</label>
+                        <select id="subscription-temporality" name="subscription-temporality" required>
+                            <option value="mensual">Mensual</option>
+                            <option value="anual">Anual</option>
+                            <option value="semanal">Semanal</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="subscription-type">Tipo</label>
+                        <select id="subscription-type" name="subscription-type" required>
+                            <option value="entretenimiento">Entretenimiento</option>
+                            <option value="salud">Salud</option>
+                            <option value="bancaria">Bancaria</option>
+                            <option value="servicio">Servicio</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="subscription-amount">Cantidad</label>
+                        <input type="number" id="subscription-amount" name="subscription-amount">
+                    </div>
+                </form>                
+                <div class="modal-buttons">
+                    <button id="save-changes-btn" class="edit-btn">Guardar Cambios</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Contenido Principal -->
     <main>
         <!-- Resumen -->
@@ -241,7 +311,7 @@
                 <!-- Filas dinámicas generadas con Django -->
                 <div id="lista-pagos">
                     {% for pago in pagos_activos %}
-                    <div class="pago-item" id="pago-{{ pago.id }}">
+                    <div class="pago-item" id="{{ pago.id }}">
                         <div class="row">
                             <div>{{ pago.concepto }}</div>
                             {% if pago.clase == "pago_unico" %}
@@ -254,7 +324,7 @@
                             <div>{{ pago.tipo }}</div>
                             <div>${{ pago.monto }}</div>
                             <div class="actions">
-                                <button class="edit-btn">Modificar</button>
+                                <button class="edit-btn " data-id="{{ pago.id }}">Modificar</button>
                                 <button class="delete-btn" data-id="{{ pago.id }}">Eliminar</button>
                             </div>
                         </div>

@@ -8,7 +8,7 @@ django.setup()
 from pagos.models import PagoUnico,PagoRecurrente
 
 def listar_pagos_recurrentes():
-    pagos = PagoRecurrente.objects.all()
+    pagos = PagoUnico.objects.all()
     if pagos.exists():
         print("Pagos Recurrentes:")
         for pago in pagos:

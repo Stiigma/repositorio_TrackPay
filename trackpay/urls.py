@@ -30,5 +30,5 @@ urlpatterns = [
     path('crear_pago_recurrente/', my_views.crear_pago_recurrente, name='crear_pago_recurrente'),
     path('ruta-obtener-pagos/', my_views.obtener_pagos, name='obtener_pagos'),
     path('eliminar-pago/<int:pago_id>/', my_views.eliminar_pago, name='eliminar_pago'),
-
+    path('editar_pago/<int:pago_id>/', my_views.editar_pago, name='editar_pago'),
 ]

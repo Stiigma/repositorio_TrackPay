@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,get_object_or_404
 from pagos.forms import RegistroCompletoForm, LoginForm, PagoUnicoForm, PagoRecurrenteForm
 from django.contrib.auth import authenticate, login,logout
 from django.contrib.auth.decorators import login_required
@@ -6,7 +6,7 @@ from pagos.models import PagoRecurrente, PagoUnico
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 import datetime
-
+import json
 def home(request):
     return render(request, "home/index.html")
 
@@ -168,4 +168,48 @@ def eliminar_pago(request, pago_id):
             return JsonResponse({'success': True})
         else:
             return JsonResponse({'success': False, 'error': 'Pago no encontrado.'})
+    return JsonResponse({'success': False, 'error': 'Método no permitido.'})
+
+@login_required
+def editar_pago(request, pago_id):
+    if request.method == 'POST':
+        data = json.loads(request.body)  # Procesar el JSON del cliente
+        tipo_clase = data.get('tipo_clase')
+        concepto = data.get('subscription-name')
+        fecha_vencimiento = data.get('subscription-date')
+        temporalidad = data.get('subscription-temporality')
+        tipo = data.get('subscription-type')
+        monto = data.get('subscription-amount')
+
+        if not tipo_clase or not pago_id:
+            return JsonResponse({'success': False, 'error': 'ID y tipo de clase son requeridos.'})
+
+        # Obtener el modelo correcto según tipo_clase
+        if tipo_clase == 'pago_unico':
+            pago = get_object_or_404(PagoUnico, id=pago_id, usuario=request.user)
+        elif tipo_clase == 'pago_recurrente':
+            pago = get_object_or_404(PagoRecurrente, id=pago_id, usuario=request.user)
+        else:
+            return JsonResponse({'success': False, 'error': 'Tipo de clase inválido.'})
+
+        # Actualizar los campos
+        if concepto:
+            pago.concepto = concepto
+        if fecha_vencimiento:
+            pago.fecha_fin = fecha_vencimiento
+            if isinstance(pago, PagoUnico):
+                pago.fecha = fecha_vencimiento
+        if temporalidad and isinstance(pago, PagoRecurrente):
+            pago.frecuencia = temporalidad.lower()
+        if tipo:
+            pago.tipo = tipo.lower()
+        if monto:
+            try:
+                pago.monto = float(monto)
+            except ValueError:
+                return JsonResponse({'success': False, 'error': 'Monto inválido.'})
+
+        pago.save()
+        return JsonResponse({'success': True, 'message': 'Pago actualizado exitosamente.'})
+
     return JsonResponse({'success': False, 'error': 'Método no permitido.'})
