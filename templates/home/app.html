@@ -1,37 +1,274 @@
-{% load static %}
 <!DOCTYPE html>
+{% load static %}
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="{% static 'css/app.css' %}">
-  <title>TrackPay</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Suscripciones</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="{% static 'css/app.css' %}">
 </head>
 <body>
-    
+    <!-- Encabezado -->
     <header class="header">
-        <div class="menu container">
-            <!-- Corregido para usar la ruta estática de la imagen -->
-            <a href="#" class="logo"><img src="{% static 'img/logoNombre.png' %}" alt="TrackPay Logo"></a>
-            <nav class="navbar">
-                <ul>
-                    <li><a href="#">Inicio</a></li>
-                    <li><a href="#">Funcionamiento</a></li>
-                    <li><a href="#">Acerca</a></li>
-                    <li><a href="#">Precios</a></li>
-                    <li><a href="#">Blog</a></li>
-                </ul>
-            </nav>
-            <div class="login">
-                <ul>
-                    <li><a href="{% url 'login' %}" class="btn-ent">Entrar</a></li>
-                    <li><a href="#" class="btn-comen">Comenzar Ahora</a></li>
-                </ul>
+        <div class="logo"><img src="{% static 'img/logoNombre.png' %}" alt="Trackpay"></div>
+        <nav class="nav">
+            <a href="#">Funcionamiento</a>
+            <a href="#">Acerca</a>
+            <a href="#">Precios</a>
+            <a href="#">Blog</a>
+        </nav>
+
+        <div class="user-profile">
+            <img src="{% static 'img/mikey.webp' %}" alt="Usuario" class="profile-pic">
+            <span>Miguel Martinez</span>
+            <i class="fas fa-cog" id="config-btn"></i>
+        </div>
+
+        <!-- Modal Configuración -->
+        <div id="config-modal" class="modal">
+            <div class="modal-inner">
+                <div class="modal-header">
+                    <h3>Configuración</h3>
+                    <button class="modal-close" id="close-config-modal">&times;</button>
+                </div>
+                <p>Aquí puedes configurar tu cuenta. Agrega las opciones necesarias para personalizar la experiencia del usuario.</p>
             </div>
         </div>
-        
     </header>
-    
+
+    <!-- Contenido Principal -->
+    <main>
+        <!-- Resumen -->
+        <section class="overview">
+            <h1>Suscripciones</h1>
+            <img src="{% static 'img/logo.png' %}" alt="Logo">
+            <div class="overview-cards">
+                <div class="card">
+                    <h3>Valor por mes</h3>
+                    <div class="value">$120</div>
+                </div>
+                <div class="card">
+                    <h3>Fecha más próxima</h3>
+                    <div class="value">12/12/2024 - Spotify</div>
+                </div>
+                <div class="card">
+                    <h3>Filtración</h3>
+                    <select class="filter-select">
+                        <option value="fecha">Pago único</option>
+                        <option value="valor">Pago recurrente</option>
+                        <option value="tipo">Todos</option>
+                    </select>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tabla de Suscripciones -->
+        <section class="subscriptions">
+            <div class="new-subscription">
+                <button class="new-btn" id="add-btn"><i class="fas fa-plus"></i> Nuevo</button>
+            </div>
+
+            <!-- Modal Agregar -->
+            <div id="add-modal" class="modal hidden">
+                <div class="modal-inner">
+                    <div class="modal-header">
+                        <h3>Nuevo Pago</h3>
+                        <button class="modal-close" id="close-add-modal">&times;</button>
+                    </div>
+            
+                    <!-- Formulario para Pago Único -->
+                    <form id="payUnitForm" method="POST" class="form ">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="concepto">Concepto:</label>
+                            <input 
+                                type="text" 
+                                id="concepto" 
+                                name="concepto" 
+                                class="controls" 
+                                placeholder="Concepto del pago" 
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label for="fecha">Fecha a pagar:</label>
+                            <input 
+                                type="date" 
+                                id="fecha" 
+                                name="fecha" 
+                                class="controls" 
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label for="monto">Monto:</label>
+                            <input 
+                                type="text" 
+                                id="monto" 
+                                name="monto" 
+                                class="controls" 
+                                placeholder="monto" 
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label for="hora">Hora de aviso:</label>
+                            <input 
+                                type="time" 
+                                id="hora" 
+                                name="hora" 
+                                class="controls" 
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label for="prioridad">Prioridad:</label>
+                            <select 
+                                id="prioridad" 
+                                name="prioridad" 
+                                class="controls" 
+                                required>
+                                <option value="1">Importante - Urgente</option>
+                                <option value="2">Importante - No Urgente</option>
+                                <option value="3">No Importante - Urgente</option>
+                                <option value="4">No Importante - No Urgente</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="tipo">Tipo:</label>
+                            <input 
+                                type="text" 
+                                id="tipo" 
+                                name="tipo" 
+                                class="controls" 
+                                placeholder="Ejemplo: único" 
+                                required>
+                        </div>
+                        <button type="button" id="switch-to-recurrent" class="btn-secondary">Cambiar a Pago Recurrente</button>
+                        <button type="submit" class="btn-primary">Guardar Pago Único</button>
+                    </form>
+            
+                    <!-- Formulario para Pago Recurrente -->
+                    <form id="payReqForm" method="POST" class="form hidden">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="concepto">Nombre del pago:</label>
+                            <input 
+                                type="text" 
+                                id="concepto" 
+                                name="concepto" 
+                                class="controls" 
+                                placeholder="Nombre del pago" 
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label for="frecuencia">Frecuencia:</label>
+                            <select 
+                                id="frecuencia" 
+                                name="frecuencia" 
+                                class="controls" 
+                                required>
+                                <option value="diario">Diario</option>
+                                <option value="semanal">Semanal</option>
+                                <option value="mensual">Mensual</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="monto">Monto</label>
+                            <input 
+                                type="text" 
+                                id="monto" 
+                                name="monto" 
+                                class="controls" 
+                                placeholder="monto" 
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label for="fecha_fin">Fecha a pagar:</label>
+                            <input 
+                                type="date" 
+                                id="fecha_fin" 
+                                name="fecha_fin" 
+                                class="controls" 
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label for="hora">Hora de aviso:</label>
+                            <input 
+                                type="time" 
+                                id="hora" 
+                                name="hora" 
+                                class="controls" 
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label for="prioridad">Prioridad:</label>
+                            <select 
+                                id="prioridad" 
+                                name="prioridad" 
+                                class="controls" 
+                                required>
+                                <option value="1">Importante - Urgente</option>
+                                <option value="2">Importante - No Urgente</option>
+                                <option value="3">No Importante - Urgente</option>
+                                <option value="4">No Importante - No Urgente</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="tipo">Tipo:</label>
+                            <input 
+                                type="text" 
+                                id="tipo" 
+                                name="tipo" 
+                                class="controls" 
+                                placeholder="Ejemplo: recurrente" 
+                                required>
+                        </div>
+                        <button type="button" id="switch-to-unit" class="btn-secondary">Cambiar a Pago Único</button>
+                        <button type="submit" class="btn-primary">Guardar Pago Recurrente</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="custom-table">
+                <!-- Encabezados de la tabla -->
+                <div class="header">
+                    <div>Nombre</div>
+                    <div>Fecha de vencimiento</div>
+                    <div>Temporalidad</div>
+                    <div>Tipo</div>
+                    <div>Cantidad</div>
+                    <div>Acciones</div>
+                </div>
+
+                <!-- Filas dinámicas generadas con Django -->
+                <div id="lista-pagos">
+                    {% for pago in pagos_activos %}
+                    <div class="pago-item" id="pago-{{ pago.id }}">
+                        <div class="row">
+                            <div>{{ pago.concepto }}</div>
+                            {% if pago.clase == "pago_unico" %}
+                            <div>{{ pago.fecha|date:"d M, Y" }}</div>
+                            <div>Ninguna</div>
+                            {% elif pago.clase == "pago_recurrente" %}
+                            <div>{{ pago.fecha_fin|date:"d M, Y" }}</div>
+                            <div>{{ pago.frecuencia }}</div>
+                            {% endif %}
+                            <div>{{ pago.tipo }}</div>
+                            <div>${{ pago.monto }}</div>
+                            <div class="actions">
+                                <button class="edit-btn">Modificar</button>
+                                <button class="delete-btn" data-id="{{ pago.id }}">Eliminar</button>
+                            </div>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <div class="row">
+                        <div colspan="6">No hay pagos activos.</div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="{% static 'js/modal.js' %}"></script>
 </body>
 </html>

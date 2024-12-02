@@ -23,5 +23,12 @@ urlpatterns = [
     path('', my_views.home, name='home'),
     path('login/', my_views.entrar, name='login'),
     path('register/', my_views.registro, name='register'),
+    path('app/', my_views.appFull, name='appFull'),
+    path('logout/', my_views.salir, name='logout'),
     path("admin/", admin.site.urls),
+    path('crear_pago_unico/', my_views.crear_pago_unico, name='crear_pago_unico'),
+    path('crear_pago_recurrente/', my_views.crear_pago_recurrente, name='crear_pago_recurrente'),
+    path('ruta-obtener-pagos/', my_views.obtener_pagos, name='obtener_pagos'),
+    path('eliminar-pago/<int:pago_id>/', my_views.eliminar_pago, name='eliminar_pago'),
+
 ]

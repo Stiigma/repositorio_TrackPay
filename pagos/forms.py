@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from pagos.models import Usuario
+from pagos.models import Usuario, PagoUnico, PagoRecurrente
 
 class RegistroCompletoForm(forms.ModelForm):
     # Campos adicionales de Usuario
@@ -92,3 +92,67 @@ class LoginForm(forms.Form):
             'class': 'controls'  # Asegúrate de que coincida con el CSS
         })
     )
+
+class PagoUnicoForm(forms.ModelForm):
+    class Meta:
+        model = PagoUnico
+        fields = ['concepto', 'monto','fecha', 'hora', 'prioridad', 'tipo']
+        widgets = {
+            'concepto': forms.TextInput(attrs={
+                'class': 'controls',
+                'placeholder': 'Concepto del pago'
+            }),
+            'fecha': forms.DateInput(attrs={
+                'class': 'controls',
+                'type': 'date'
+            }),
+            'monto': forms.DateInput(attrs={
+                'class': 'controls',
+                'placeholder': 'monto'
+            }),
+            'hora': forms.TimeInput(attrs={
+                'class': 'controls',
+                'type': 'time'
+            }),
+            'prioridad': forms.Select(attrs={
+                'class': 'controls'
+            }),
+            'tipo': forms.TextInput(attrs={
+                'class': 'controls',
+                'placeholder': 'Ejemplo: único'
+            }),
+        }
+        
+        
+class PagoRecurrenteForm(forms.ModelForm):
+    class Meta:
+        model = PagoRecurrente
+        fields = ['concepto', 'monto','frecuencia', 'fecha_fin', 'hora', 'prioridad', 'tipo']
+        widgets = {
+            'concepto': forms.TextInput(attrs={
+                'class': 'controls',
+                'placeholder': 'Nombre del pago'
+            }),
+            'frecuencia': forms.Select(attrs={
+                'class': 'controls'
+            }),
+            'monto': forms.DateInput(attrs={
+                'class': 'controls',
+                'placeholder': 'monto'
+            }),
+            'fecha_fin': forms.DateInput(attrs={
+                'class': 'controls',
+                'type': 'date'
+            }),
+            'hora': forms.TimeInput(attrs={
+                'class': 'controls',
+                'type': 'time'
+            }),
+            'prioridad': forms.Select(attrs={
+                'class': 'controls'
+            }),
+            'tipo': forms.TextInput(attrs={
+                'class': 'controls',
+                'placeholder': 'Ejemplo: recurrente'
+            }),
+        }

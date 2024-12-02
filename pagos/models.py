@@ -17,7 +17,13 @@ class PagoBase(models.Model):
     )
     fecha_creacion = models.DateTimeField(auto_now_add=True)
     fecha_actualizacion = models.DateTimeField(auto_now=True)  # Actualiza al modificar
-    prioridad = models.IntegerField()
+    prioridad = models.IntegerField(choices=[
+        (1, 'Importante - Urgente'),
+        (2, 'Importante - No Urgente'),
+        (3, 'No Importante - Urgente'),
+        (4, 'No Importante - No Urgente')
+    ])
+    hora = models.TimeField(null=True, blank=True)  # Campo para la hora
 
     class Meta:
         abstract = True  # Modelo abstracto, no crea tabla en la base de datos
@@ -54,13 +60,24 @@ class PagoUnico(PagoBase):
         related_name="pagos_unicos"  # Nombre único para este modelo
     )
     fecha = models.DateField()
-
+    tipo = models.CharField(
+        max_length=50,
+        choices=[
+            ('entretenimiento', 'Entretenimiento'),
+            ('Salud', 'Salud'),
+            ('Bancario', 'Bancaria'),
+            ('Servicio', 'Servicio'),
+        ],
+        default='pendiente',
+    )
     def __str__(self):
         return f"Pago Único: {self.concepto} - {self.monto} - Fecha: {self.fecha}"
 
     def esta_vencido(self):
         return self.fecha < date.today()
 
+    def clase(self):
+        return "pago_unico"
 # Modelo para Pagos Recurrentes
 class PagoRecurrente(PagoBase):
     usuario = models.ForeignKey(
@@ -71,12 +88,13 @@ class PagoRecurrente(PagoBase):
     frecuencia = models.CharField(
         max_length=50,
         choices=[
+            ('diario', 'Diario'),
+            ('semanal', 'Semanal'),
             ('mensual', 'Mensual'),
-            ('anual', 'Anual'),
         ],
         default='mensual',
     )
-    fecha_inicio = models.DateField()
+    fecha_inicio = models.DateField(auto_now_add=True)
     fecha_fin = models.DateField(null=True, blank=True)
     tipo = models.CharField(
         max_length=50,
@@ -102,7 +120,10 @@ class PagoRecurrente(PagoBase):
             proximo_vencimiento += delta
 
         return proximo_vencimiento
-
+    
+    def clase(self):
+        return "pago_recurrente"
+    
     def __str__(self):
         return f"Pago Recurrente: {self.concepto} - {self.monto} - Frecuencia: {self.frecuencia}"
 
