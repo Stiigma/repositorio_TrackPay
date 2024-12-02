@@ -96,7 +96,7 @@ class LoginForm(forms.Form):
 class PagoUnicoForm(forms.ModelForm):
     class Meta:
         model = PagoUnico
-        fields = ['concepto', 'monto','fecha', 'hora', 'prioridad', 'tipo']
+        fields = ['concepto', 'monto','fecha_fin', 'hora', 'prioridad', 'tipo']
         widgets = {
             'concepto': forms.TextInput(attrs={
                 'class': 'controls',
@@ -125,6 +125,39 @@ class PagoUnicoForm(forms.ModelForm):
         
         
 class PagoRecurrenteForm(forms.ModelForm):
+    class Meta:
+        model = PagoRecurrente
+        fields = ['concepto', 'monto','frecuencia', 'fecha_fin', 'hora', 'prioridad', 'tipo']
+        widgets = {
+            'concepto': forms.TextInput(attrs={
+                'class': 'controls',
+                'placeholder': 'Nombre del pago'
+            }),
+            'frecuencia': forms.Select(attrs={
+                'class': 'controls'
+            }),
+            'monto': forms.DateInput(attrs={
+                'class': 'controls',
+                'placeholder': 'monto'
+            }),
+            'fecha_fin': forms.DateInput(attrs={
+                'class': 'controls',
+                'type': 'date'
+            }),
+            'hora': forms.TimeInput(attrs={
+                'class': 'controls',
+                'type': 'time'
+            }),
+            'prioridad': forms.Select(attrs={
+                'class': 'controls'
+            }),
+            'tipo': forms.TextInput(attrs={
+                'class': 'controls',
+                'placeholder': 'Ejemplo: recurrente'
+            }),
+        }
+        
+class PagoEdicionForm(forms.ModelForm):
     class Meta:
         model = PagoRecurrente
         fields = ['concepto', 'monto','frecuencia', 'fecha_fin', 'hora', 'prioridad', 'tipo']
