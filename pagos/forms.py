@@ -62,10 +62,10 @@ class RegistroCompletoForm(forms.ModelForm):
     def save(self, commit=True):
         # Guardar el modelo User
         user = super().save(commit=False)
-        user.set_password(self.cleaned_data['password'])  # Encriptar la contraseña
+        user.set_password(self.cleaned_data['password']) 
         if commit:
             user.save()
-            # Crear la instancia de Usuario asociada
+            
             Usuario.objects.create(
                 usuario=user,
                 nombre_com=self.cleaned_data['nombre_com'],
@@ -82,14 +82,14 @@ class LoginForm(forms.Form):
         label="Username",
         widget=forms.TextInput(attrs={
             'placeholder': 'Enter Your Username',
-            'class': 'controls'  # Asegúrate de que coincida con el CSS
+            'class': 'controls'  
         })
     )
     password = forms.CharField(
         label="Password",
         widget=forms.PasswordInput(attrs={
             'placeholder': 'Enter Your Password',
-            'class': 'controls'  # Asegúrate de que coincida con el CSS
+            'class': 'controls'  
         })
     )
 

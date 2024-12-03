@@ -26,7 +26,7 @@
         <div class="login">
             <ul>
                 <li><a href="{% url 'login' %}" class="btn-ent">Entrar</a></li>
-                <li><a href="#" class="btn-comen">Comenzar Ahora</a></li>
+                <li><a href="{% url 'register' %}" class="btn-comen">Comenzar Ahora</a></li>
             </ul>
         </div>
     </div>
@@ -34,7 +34,7 @@
         <div class="header-txt">
             <h1>Todas tus suscripciones en un solo lugar</h1>
             <p>Mantén tus suscripciones bajo control, sin sorpresas ni olvidos. ¡Todo en un solo lugar, fácil y rápido!</p>
-            <a href="#" class="btn-1">Agregar suscripciones</a>
+            <a href="{% url 'register' %}" class="btn-1">Agregar suscripciones</a>
         </div>
         <!-- Corregido para usar la ruta estática de la imagen -->
         <div class="header-img">
@@ -62,7 +62,7 @@
                 <br>Personaliza periodos y notificaciones
                 <br>Alertas a varios correos
             </p>
-            <a href="#" class="btn-2">Empieza Ahora Gratis</a>
+            <a href="{% url 'register' %}" class="btn-2">Empieza Ahora Gratis</a>
         </div>
     </div>
 </section>

@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@100;200;300;400;500&display=swap');
 
-/* Estilo general */
+
 body {
     margin: 0;
     font-family: "Bebas Neue", "Arial", sans-serif;
@@ -8,12 +8,12 @@ body {
     color: #333;
 }
 
-/* Encabezado */
+
 .header {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
-    padding: 15px 30px;
+    padding: 15px 100px;
     background: linear-gradient(180deg, rgb(60, 116, 172) 0%, rgba(84, 131, 179, 0.5) 70%, rgba(84, 131, 179, 0) 100%);
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
 }
@@ -22,12 +22,15 @@ body {
     width: 30%;
     text-align: center;
 }
-
+.nav{
+    padding-right: 32vh;
+}
 .nav a {
     margin: 0 15px;
     text-decoration: none;
     color: #000000;
     font-weight: bold;
+    font-size: 28px;
 }
 
 .nav a:hover {
@@ -37,6 +40,17 @@ body {
 .profile {
     display: flex;
     align-items: center;
+    font-size: 10px; 
+    font-weight: bold; 
+    color: #333; 
+}
+
+.user-profile{
+    display: flex;
+    align-items: center;
+    font-size: 30px;
+    font-weight: bold; 
+    color: #333; 
 }
 
 .profile-pic {
@@ -50,6 +64,14 @@ body {
     margin-left: 10px;
     cursor: pointer;
 }
+
+.user-profile .profile .username {
+    font-size: 40px; 
+    font-weight: bold;
+    color: #000; 
+}
+
+
 
 /* Sección general */
 main {
@@ -86,7 +108,7 @@ h1 {
 }
 
 .card h3 {
-    font-size: 18px;
+    font-size: 40px;
     color: #2357c9;
 }
 
@@ -213,7 +235,7 @@ h1 {
     cursor: pointer;
 }
 
-/* Modales */
+/* Modal General */
 .modal {
     display: none;
     position: fixed;
@@ -229,9 +251,9 @@ h1 {
 
 .modal-inner {
     background: white;
-    padding: 20px;
-    border-radius: 8px;
-    width: 500px;
+    padding: 30px;
+    border-radius: 10px;
+    width: 600px;
     max-width: 90%;
     position: relative;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
@@ -243,19 +265,22 @@ h1 {
     align-items: center;
     background-color: #427ff0;
     color: white;
-    padding: 10px 15px;
-    border-radius: 5px 5px 0 0;
+    padding: 5px 5px;
+    border-radius: 10px 10px 0 0;
+    margin-bottom: 30px;
 }
 
 .modal-header h3 {
     margin: 0;
-    font-size: 20px;
+    font-size: 17px;
+    font-weight: bold;
 }
 
 .modal-close {
     background: none;
     border: none;
     font-size: 24px;
+    color: white;
     cursor: pointer;
 }
 
@@ -264,55 +289,36 @@ h1 {
 }
 
 .modal-body {
-    padding: 20px;
     display: flex;
     flex-direction: column;
-    gap: 20px; /* Espaciado entre secciones */
+    gap: 20px;
+    position: relative;
 }
 
-/* Sección de perfil */
-.profile-section {
-    display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-}
-
-.profile-img-large {
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    margin-right: 20px;
-}
-
-.profile-info {
-    font-size: 16px;
-    color: #333;
-}
-/* Formularios */
-.form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
+.form-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Dos columnas iguales */
+    gap: 20px; /* Espaciado entre columnas y filas */
 }
 
 .form-group label {
     font-weight: bold;
-    margin-bottom: 5px;
-    color: #555;
+    color: #333;
 }
 
 .form-group input,
 .form-group select {
+    width: 100%;
     padding: 10px;
-    border: 1px solid #ddd;
     border-radius: 5px;
+    border: 1px solid #ddd;
     font-size: 14px;
 }
 
-.form-group input:focus,
-.form-group select:focus {
-    outline: none;
-    border-color: #427ff0;
+.modal-buttons {
+    position: absolute;
+    bottom: 20px; /* Alineado al fondo */
+    right: 20px; /* Alineado a la derecha */
 }
 
 .btn-primary {
@@ -322,97 +328,151 @@ h1 {
     padding: 10px 15px;
     border-radius: 5px;
     cursor: pointer;
+    font-size: 16px;
 }
 
 .btn-primary:hover {
     background-color: #0041a3;
 }
 
-.btn-secondary {
-    background-color: #ddd;
-    color: #333;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
+/* Configuración de las columnas */
+.config-info {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    align-items: flex-start;
 }
 
-.btn-secondary:hover {
-    background-color: #bbb;
-}
-
-/* Animaciones */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: scale(0.95);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
-}
-
-
-#config-modal .modal-inner {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* Dos columnas iguales */
-    gap: 20px; /* Espaciado entre columnas */
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    width: 700px; /* Ancho del modal */
-    max-width: 90%;
-    position: relative;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-/* Estilo para cada columna */
-.config-left,
-.config-right {
+.config-left {
+    flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 15px; /* Espaciado entre los elementos */
-}
-
-/* Encabezado del modal */
-#config-modal .modal-header {
-    grid-column: 1 / -1; /* El encabezado ocupa las dos columnas */
-    display: flex;
-    justify-content: space-between;
     align-items: center;
-    background-color: #427ff0;
-    color: white;
-    padding: 10px 15px;
-    border-radius: 5px 5px 0 0;
+    gap: 15px;
 }
 
-#config-modal .modal-header h3 {
-    margin: 0;
-    font-size: 22px;
+.user-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-#config-modal .modal-close {
-    background: none;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-    color: white;
+.user-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-#config-modal .modal-close:hover {
-    color: red;
+.config-left .info-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 5px;
+    width: 100%;
 }
 
-/* Botones del modal */
-.config-footer {
-    grid-column: 1 / -1; /* El pie ocupa las dos columnas */
+.config-left .info-row label {
+    font-weight: bold;
+    font-size: 14px;
+    color: #333;
+}
+
+.config-left .info-row .info-text {
+    background: #f8f8f8;
+    padding: 8px 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    color: #555;
+    width: 100%;
+    text-align: center;
+}
+
+.config-right {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.config-right .info-row {
     display: flex;
     justify-content: space-between;
-    margin-top: 20px;
+    gap: 20px;
 }
 
-.config-footer button {
+.config-right .info-row label {
+    font-weight: bold;
+    font-size: 14px;
+    color: #333;
+    flex: 1;
+    text-align: right;
+}
+
+.config-right .info-row .info-text {
+    flex: 2;
+    background: #f8f8f8;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    color: #555;
+}
+
+.user-avatar {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    text-align: center; 
+    gap: 10px;
+}
+
+.user-avatar img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    object-fit: cover; 
+    margin-bottom: 10px; 
+}
+
+.import-info .info-row {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    gap: 5px; 
+}
+
+.import-info .info-row label {
+    font-weight: bold; 
+    font-size: 14px; 
+    color: #333; 
+}
+
+.import-info.info-row .info-text {
+    background: #f8f8f8;
+    padding: 8px 10px; 
+    border-radius: 5px; 
+    border: 1px solid #ddd; 
+    font-size: 14px;
+    color: #555; 
+    width: 100%; 
+    text-align: center; 
+}
+
+.config-footer {
+
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px; 
+}
+
+button {
     padding: 10px 15px;
     border-radius: 5px;
     border: none;
@@ -420,20 +480,59 @@ h1 {
     font-size: 14px;
 }
 
-.config-footer .edit-btn {
+.edit-btn {
     background-color: #427ff0;
     color: white;
 }
 
-.config-footer .edit-btn:hover {
+.edit-btn:hover {
     background-color: #0041a3;
 }
 
-.config-footer .logout-btn {
+.logout-btn {
     background-color: #a70404;
     color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    margin-left: auto; 
 }
 
-.config-footer .logout-btn:hover {
+.logout-btn:hover {
     background-color: #900303;
 }
+
+.logout-link {
+    color: white;
+    text-decoration: none;
+}
+
+.logout-link:hover {
+    text-decoration: underline;
+}
+
+.form {
+    width: 100%; 
+    display: flex;
+    flex-direction: column; 
+    gap: 15px;
+}
+
+.form-group label {
+    font-weight: bold;
+    color: #555;
+}
+
+
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: #427ff0;
+}
+
+.edit-subscription-form{
+    margin-bottom: 8vh;
+}
+

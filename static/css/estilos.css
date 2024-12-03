@@ -332,50 +332,50 @@ form{
 
 /* --- Footer --- */
 .footer {
-    background-color: #232b47; /* Fondo oscuro */
-    color: #FFFFFF; /* Texto blanco */
-    padding: 50px 20px; /* Espaciado alrededor */
-    display: flex; /* Usamos flexbox para la disposición */
-    justify-content: space-between; /* Distribuir espacio entre columnas */
-    align-items: flex-start; /* Alinear elementos al inicio */
+    background-color: #232b47; 
+    color: #FFFFFF;
+    padding: 50px 20px;
+    display: flex; 
+    justify-content: space-between; 
+    align-items: flex-start; 
 }
 
 /* Sección izquierda: Logo */
 .footer .footer-left {
-    flex: 1; /* Ocupa una proporción del espacio disponible */
-    text-align: left; /* Alinear a la izquierda */
+    flex: 1; 
+    text-align: left; 
 }
 
 .footer .footer-left img {
-    max-width: 150px; /* Ajustar el tamaño del logo */
-    height: auto; /* Mantener proporción */
+    max-width: 150px; 
+    height: auto; 
 }
 
 /* Sección central: Elementos en líneas de tres */
 .footer .footer-center {
-    flex: 2; /* Ocupa más espacio que el logo */
-    text-align: center; /* Centrar elementos */
-    display: flex; /* Usar flexbox para los elementos internos */
-    flex-wrap: wrap; /* Permitir que los elementos se ajusten a la siguiente línea */
-    gap: 20px; /* Espaciado entre elementos */
-    justify-content: center; /* Centrar elementos horizontalmente */
+    flex: 2;
+    text-align: center; 
+    display: flex; 
+    flex-wrap: wrap; 
+    gap: 20px; 
+    justify-content: center; 
 }
 
 .footer .footer-center div {
-    width: calc(33.33% - 20px); /* Cada elemento ocupa un tercio del ancho */
-    text-align: center; /* Centrar texto dentro de cada elemento */
-    color: #0b7cbd; /* Color de texto */
-    font-size: 16px; /* Tamaño de fuente */
+    width: calc(33.33% - 20px); 
+    text-align: center; 
+    color: #0b7cbd;
+    font-size: 16px; 
 }
 
 /* Ajustes responsivos para pantallas pequeñas */
 @media (max-width: 768px) {
     .footer {
-        flex-direction: column; /* Cambiar disposición a columna */
-        align-items: center; /* Centrar elementos */
+        flex-direction: column; 
+        align-items: center; 
     }
 
     .footer .footer-center div {
-        width: 100%; /* Ocupa todo el ancho en pantallas pequeñas */
+        width: 100%; 
     }
 }

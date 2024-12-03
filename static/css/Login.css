@@ -35,7 +35,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 0.5rem; /* Reduce la distancia entre imagen y formulario */
+    gap: 0.5rem; 
     margin-bottom: 1.5rem;
 }
 
@@ -68,11 +68,11 @@ form {
     box-shadow: 0 0 5px rgba(93, 155, 214, 0.5);
 }
 
-/* Estilo para Restablecer Contraseña */
+
 .reset-password {
     display: block;
     text-align: center;
-    margin: 0.5rem 0; /* Espaciado vertical */
+    margin: 0.5rem 0; 
     font-size: 0.9rem;
     color: #666;
     text-decoration: none;

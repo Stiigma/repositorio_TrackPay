@@ -13,15 +13,15 @@
     <header class="header">
         <div class="logo"><img src="{% static 'img/logoNombre.png' %}" alt="Trackpay"></div>
         <nav class="nav">
-            <a href="#">Funcionamiento</a>
-            <a href="#">Acerca</a>
-            <a href="#">Precios</a>
-            <a href="#">Blog</a>
+            <a href="#">Pagos Activos</a>
+            <a href="{% url 'historial'%}">Historial</a>
         </nav>
 
         <div class="user-profile">
-            <img src="{% static 'img/mikey.webp' %}" alt="Usuario" class="profile-pic">
-            <span>Miguel Martinez</span>
+            <img src="{% static 'img/fotoperfil.jpg' %}" alt="Usuario" class="profile-pic">
+            <div class="profile">
+                <span class="username">{{ usuario.usuario.username }}</span>
+            </div>
             <i class="fas fa-cog" id="config-btn"></i>
         </div>
 
@@ -33,80 +33,98 @@
                     <button class="modal-close" id="close-config-modal">&times;</button>
                 </div>
                     <!-- Columna izquierda -->
+                    <div class="config-info">
                         <div class="config-left">
-                        <label>Foto de Usuario:</label>
-                        <div style="width: 100px; height: 100px; background-color: #ddd; border-radius: 50%;"></div>
-                        <label>Usuario:</label>
-                        <div>Miguel Martínez</div>
-                        <label>Nombre Completo:</label>
-                        <input type="text" value="Miguel Ángel Martínez López">
+                            <label>Foto de Usuario:</label>
+                            <div class="user-avatar">
+                                <img src="{% static 'img/fotoperfil.jpg' %}" alt="Foto de Usuario">
+                            </div>
+                            <div class = "import-info"> 
+                                <div class="info-row">
+                                    <label>Usuario:</label>
+                                    <div class="info-text">{{ usuario.usuario.username }}</div>
+                                </div>
+                                <div class="info-row">
+                                    <label>Nombre Completo:</label>
+                                    <div class="info-text">{{ usuario.nombre_com }}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="config-right">
+                            <div class="info-row">
+                                <label>Número de Celular:</label>
+                                <div class="info-text">{{ usuario.num_cel }}</div>
+                            </div>
+                            <div class="info-row">
+                                <label>Correo:</label>
+                                <div class="info-text">{{ usuario.usuario.email }}</div>
+                            </div>
+                            <div class="info-row">
+                                <label>Nacionalidad:</label>
+                                <div class="info-text">{{ usuario.Na }}</div>
+                            </div>
+                            <div class="info-row">
+                                <label>Total de Pagos Activos:</label>
+                                <div class="info-text">{{ usuario.usuario.pagos_unicos.count|add:usuario.usuario.pagos_recurrentes.count }}</div>
+                            </div>
+                        </div>
                     </div>
-                
-                    <!-- Columna derecha -->
-                    <div class="config-right">
-                        <label>Número de Celular:</label>
-                        <input type="text" value="+34 612 345 678">
-                        <label>Correo:</label>
-                        <input type="email" value="miguel.martinez@example.com">
-                        <label>Nacionalidad:</label>
-                        <input type="text" value="Española">
-                        <label>Total de Pagos Activos:</label>
-                        <input type="text" value="5">
-                    </div>
-                
-                    <!-- Pie del modal -->
+                    
                     <div class="config-footer">
                         <button class="edit-btn">Editar Información</button>
-                        <button class="logout-btn">Cerrar Sesión</button>
+                        <button class="logout-btn"><a href="{% url 'login' %}" class="logout-link">Cerrar Sesión</a></button>
                     </div>
             </div>
         </div>
     </header>
         <!-- Modal de Edición de Suscripción -->
-    <div id="edit-subscription-modal" class="modal">
-        <div class="modal-inner">
-            <div class="modal-header">
-                <h3>Editar Suscripción</h3>
-                <button class="modal-close" id="close-edit-modal">&times;</button>
-            </div>
-            <div class="modal-body">
-                <form class="edit-subscription-form">
-                    <div class="form-group">
-                        <label for="subscription-name">Nombre</label>
-                        <input type="text" id="subscription-name" name="subscription-name" required>
+        <div id="edit-subscription-modal" class="modal">
+            <div class="modal-inner">
+                <div class="modal-header">
+                    <h3>Editar Suscripción</h3>
+                    <button class="modal-close" id="close-edit-modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form class="edit-subscription-form">
+                        <div class="form-columns">
+                            <div class="form-group">
+                                <label for="subscription-name">Nombre</label>
+                                <input type="text" id="subscription-name" name="subscription-name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="subscription-date">Fecha de Vencimiento</label>
+                                <input type="date" id="subscription-date" name="subscription-date" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="subscription-temporality">Temporalidad</label>
+                                <select id="subscription-temporality" name="subscription-temporality" required>
+                                    <option value="mensual">Mensual</option>
+                                    <option value="anual">Anual</option>
+                                    <option value="semanal">Semanal</option>
+                                    <option value="Ninguna">Ninguna</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="subscription-type">Tipo</label>
+                                <select id="subscription-type" name="subscription-type" required>
+                                    <option value="entretenimiento">Entretenimiento</option>
+                                    <option value="salud">Salud</option>
+                                    <option value="bancaria">Bancaria</option>
+                                    <option value="servicio">Servicio</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="subscription-amount">Cantidad</label>
+                                <input type="number" id="subscription-amount" name="subscription-amount">
+                            </div>
+                        </div>
+                    </form>                
+                    <div class="modal-buttons">
+                        <button id="save-changes-btn" class="btn-primary">Guardar Cambios</button>
                     </div>
-                    <div class="form-group">
-                        <label for="subscription-date">Fecha de Vencimiento</label>
-                        <input type="date" id="subscription-date" name="subscription-date" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="subscription-temporality">Temporalidad</label>
-                        <select id="subscription-temporality" name="subscription-temporality" required>
-                            <option value="mensual">Mensual</option>
-                            <option value="anual">Anual</option>
-                            <option value="semanal">Semanal</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="subscription-type">Tipo</label>
-                        <select id="subscription-type" name="subscription-type" required>
-                            <option value="entretenimiento">Entretenimiento</option>
-                            <option value="salud">Salud</option>
-                            <option value="bancaria">Bancaria</option>
-                            <option value="servicio">Servicio</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="subscription-amount">Cantidad</label>
-                        <input type="number" id="subscription-amount" name="subscription-amount">
-                    </div>
-                </form>                
-                <div class="modal-buttons">
-                    <button id="save-changes-btn" class="edit-btn">Guardar Cambios</button>
                 </div>
             </div>
         </div>
-    </div>
     <!-- Contenido Principal -->
     <main>
         <!-- Resumen -->
@@ -116,19 +134,20 @@
             <div class="overview-cards">
                 <div class="card">
                     <h3>Valor por mes</h3>
-                    <div class="value">$120</div>
+                    <a class="value">${{ valor_total }}</a>
                 </div>
                 <div class="card">
                     <h3>Fecha más próxima</h3>
-                    <div class="value">12/12/2024 - Spotify</div>
+                    
+                    <div class="value">{{pago_prioridad}}</div>
                 </div>
                 <div class="card">
                     <h3>Filtración</h3>
-                    <select class="filter-select">
-                        <option value="fecha">Pago único</option>
-                        <option value="valor">Pago recurrente</option>
-                        <option value="tipo">Todos</option>
-                    </select>
+                    <select id="filter-select" class="filter-select">
+                        <option value="todos">Todos</option>
+                        <option value="pagos_unicos">Pago único</option>
+                        <option value="pagos_recurrentes">Pago recurrente</option>
+                    </select>                    
                 </div>
             </div>
         </section>

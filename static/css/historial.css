@@ -1,0 +1,486 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Poppins:wght@100;200;300;400;500&display=swap');
+
+body {
+    margin: 0;
+    font-family: "Bebas Neue", "Arial", sans-serif;
+    background: white;
+    color: #333;
+}
+
+.header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 15px 100px;
+    background: linear-gradient(180deg, rgb(60, 116, 172) 0%, rgba(84, 131, 179, 0.5) 70%, rgba(84, 131, 179, 0) 100%);
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.logo img {
+    width: 30%;
+    text-align: center;
+}
+.nav{
+    padding-right: 32vh;
+}
+.nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #000000;
+    font-weight: bold;
+    font-size: 28px;
+}
+
+.nav a:hover {
+    text-decoration: underline;
+}
+
+.profile {
+    display: flex;
+    align-items: center;
+    font-size: 10px; 
+    font-weight: bold; 
+    color: #333; 
+}
+
+.user-profile{
+    display: flex;
+    align-items: center;
+    font-size: 30px;
+    font-weight: bold; 
+    color: #333; 
+}
+
+.profile-pic {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.user-profile i {
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: 24px;
+}
+
+.fas.fa-cog {
+    font-size: 24px;
+    cursor: pointer;
+}
+.user-profile .profile .username {
+    font-size: 40px; 
+    font-weight: bold;
+    color: #000; 
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    background-color: #f4f4f4;
+}
+
+.profile-img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+
+main {
+    padding: 20px 50px;
+}
+
+h1 {
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+    margin: 20px 0;
+}
+
+h2 {
+    text-align: center;
+    font-size: 20px;
+    color: #2a65bd;
+    margin-bottom: 30px;
+}
+
+.monthly-box, .total-box {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin: 20px auto;
+    width: 200px;
+    font-size: 18px;
+}
+
+/* Tabla de Historial */
+
+
+/* Contenedor de los cuadros */
+.overview-container {
+    display: flex; /* Cambiar a flexbox */
+    justify-content: space-around; /* Separar los cuadros uniformemente */
+    align-items: center; /* Alinear verticalmente */
+    margin: 20px 0; /* Espaciado superior e inferior */
+    gap: 20px; /* Espaciado entre los elementos */
+}
+
+/* Estilo de los cuadros */
+.overview-card {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    flex: 1; /* Ajustar el tamaño proporcionalmente */
+    max-width: 300px; /* Ancho máximo de cada cuadro */
+}
+
+.overview-card h3 {
+    font-size: 18px;
+    font-weight: bold;
+    color: #2357c9;
+    margin-bottom: 10px;
+}
+
+.overview-card p {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Contenedor principal del historial */
+.history-container {
+    width: 60%; /* Ajusta el tamaño total del contenedor */
+    margin: 30px auto; /* Centrado con espacio superior */
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Asegura que no desborde */
+    font-size: 14px; /* Tamaño de texto general */
+    border: 1px solid #ddd; /* Borde ligero */
+}
+
+/* Cabecera de la tabla */
+.history-header {
+    background: #2a65bd; /* Fondo azul */
+    color: #ffffff; /* Texto blanco */
+    font-weight: bold;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; /* Tres columnas iguales */
+    padding: 15px 10px; /* Espaciado interno */
+    font-size: 16px; /* Tamaño del texto de cabecera */
+    text-align: center; /* Centrado de texto */
+}
+
+/* Fila del contenido */
+.history-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr; /* Misma estructura de tres columnas */
+    padding: 10px 15px; /* Espaciado interno */
+    text-align: center; /* Texto centrado */
+    border-bottom: 1px solid #ddd; /* Línea divisoria */
+    font-size: 14px; /* Tamaño de texto para las filas */
+    color: #333; /* Color del texto */
+}
+
+/* Última fila sin borde */
+.history-row:last-child {
+    border-bottom: none;
+}
+
+/* Color de fondo alternado en filas */
+.history-row:nth-child(odd) {
+    background-color: #f9f9f9; /* Color de fondo para filas impares */
+}
+
+.history-row:nth-child(even) {
+    background-color: #ffffff; /* Color de fondo para filas pares */
+}
+
+/* Estado vacío */
+.history-row.empty-row {
+    text-align: center;
+    font-style: italic;
+    color: #999;
+    background: #f9f9f9; /* Color claro para fila vacía */
+}
+
+/* Estilo de columnas */
+.history-row .column,
+.history-header .column {
+    padding: 5px; /* Reduce el padding interno */
+    word-wrap: break-word; /* Permite ajustar texto largo */
+}
+
+/* Hover en filas */
+.history-row:hover {
+    background-color: #f1f1f1; /* Fondo al pasar el cursor */
+    cursor: default; /* Muestra un cursor por defecto */
+}
+
+/* Adaptación para pantallas pequeñas */
+@media (max-width: 768px) {
+    .history-container {
+        width: 95%; /* Ajusta el ancho */
+    }
+
+    .history-header,
+    .history-row {
+        grid-template-columns: 1fr 1fr; /* Ajusta a dos columnas */
+        font-size: 12px; /* Texto más pequeño */
+    }
+
+    .history-header .column:nth-child(3),
+    .history-row .column:nth-child(3) {
+        display: none; /* Oculta la tercera columna */
+    }
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.modal-inner {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    width: 600px;
+    max-width: 90%;
+    position: relative;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #427ff0;
+    color: white;
+    padding: 10px 10px;
+    border-radius: 10px 10px 0 0;
+    margin-bottom: 30px;
+}
+
+.modal-header h3 {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.modal-close {
+    background: none;
+    border: none;
+    font-size: 24px;
+    color: white;
+    cursor: pointer;
+}
+
+.modal-close:hover {
+    color: red;
+}
+
+.modal-body {
+    display: flex;
+    gap: 30px;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+/* Configuración de las columnas */
+/* Configuración de las columnas */
+.config-info {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+.config-left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.user-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    overflow: hidden;
+    background: #ddd;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.user-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.config-left .info-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 5px;
+    width: 100%;
+}
+
+.config-left .info-row label {
+    font-weight: bold;
+    font-size: 14px;
+    color: #333;
+}
+
+.config-left .info-row .info-text {
+    background: #f8f8f8;
+    padding: 8px 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    color: #555;
+    width: 100%;
+    text-align: center;
+}
+
+.config-right {
+    flex: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.config-right .info-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.config-right .info-row label {
+    font-weight: bold;
+    font-size: 14px;
+    color: #333;
+    flex: 1;
+    text-align: right;
+}
+
+.config-right .info-row .info-text {
+    flex: 2;
+    background: #f8f8f8;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    color: #555;
+}
+
+.user-avatar {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    text-align: center; 
+    gap: 10px;
+}
+
+.user-avatar img {
+    width: 100px;
+    height: 100px; 
+    border-radius: 50%; 
+    object-fit: cover;
+    margin-bottom: 10px; 
+}
+
+.import-info .info-row {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    gap: 5px; 
+}
+
+.import-info .info-row label {
+    font-weight: bold; 
+    font-size: 14px; 
+    color: #333; 
+}
+
+.import-info.info-row .info-text {
+    background: #f8f8f8; 
+    padding: 8px 10px; 
+    border-radius: 5px; 
+    border: 1px solid #ddd; 
+    font-size: 14px;
+    color: #555;
+    width: 100%; 
+    text-align: center; 
+}
+/* Pie del modal */
+.config-footer {
+
+    display: flex;
+    justify-content: space-between; 
+    margin-top: 20px; 
+}
+
+button {
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.edit-btn {
+    background-color: #427ff0;
+    color: white;
+}
+
+.edit-btn:hover {
+    background-color: #0041a3;
+}
+
+.logout-btn {
+    background-color: #a70404;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    margin-left: auto; 
+}
+
+.logout-btn:hover {
+    background-color: #900303;
+}
+
+.logout-link {
+    color: white;
+    text-decoration: none;
+}
+
+.logout-link:hover {
+    text-decoration: underline;
+}
+
+
+.edit-btn{
+    display: none;
+}
