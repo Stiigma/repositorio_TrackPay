@@ -38,6 +38,8 @@ def entrar(request):
                     "form": form,
                     "error": "Credenciales inválidas. Inténtalo de nuevo."
                 })
+        else:
+            return render(request, 'login.html', {'form': form})
     else:
         form = LoginForm()
     
@@ -82,7 +84,10 @@ def appFull(request):
    
     if pagos_activos:
         pago_prioridad_obj = pagos_activos[0]  
-        fecha = pago_prioridad_obj.fecha or pago_prioridad_obj.fecha_fin
+        if pago_prioridad_obj.clase() == "pago_unico":
+            fecha = pago_prioridad_obj.fecha
+        else:
+            fecha =  pago_prioridad_obj.fecha_fin
         concepto = pago_prioridad_obj.concepto
         pago_prioridad = f"{fecha.strftime('%d/%m/%Y')} - {concepto}"
     else:

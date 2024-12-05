@@ -9,8 +9,13 @@ class RegistroCompletoForm(forms.ModelForm):
         label="Nombre completo",
         widget=forms.TextInput(attrs={
             'class': 'controls',
-            'placeholder': 'Ingrese su Nombre'
-        })
+            'placeholder': 'Ingrese su Nombre',
+            'required': 'required'
+        }),
+        error_messages={
+            'required': 'Por favor completa este campo.',
+            'max_length': 'El nombre de usuario no puede superar los 100 caracteres.'
+        }
     )
     num_cel = forms.CharField(
         max_length=15,
@@ -19,6 +24,12 @@ class RegistroCompletoForm(forms.ModelForm):
             'class': 'controls',
             'placeholder': 'Ingrese su Número de celular'
         })
+        ,
+        
+        error_messages={
+            'required': 'Por favor completa este campo.',
+            'max_length': 'El nombre de usuario no puede superar los 100 caracteres.'
+        }
     )
     Na = forms.CharField(
         max_length=100,
@@ -27,6 +38,12 @@ class RegistroCompletoForm(forms.ModelForm):
             'class': 'controls',
             'placeholder': 'Ingrese su NA'
         })
+        ,
+        
+        error_messages={
+            'required': 'Por favor completa este campo.',
+            'max_length': 'El nombre de usuario no puede superar los 100 caracteres.'
+        }
     )
     fecha_nac = forms.DateField(
         label="Fecha de nacimiento",
@@ -34,6 +51,12 @@ class RegistroCompletoForm(forms.ModelForm):
             'class': 'controls',
             'type': 'date'
         })
+        ,
+        
+        error_messages={
+            'required': 'Por favor completa este campo.',
+            'max_length': 'El nombre de usuario no puede superar los 100 caracteres.'
+        }
     )
 
     # Campos de User
@@ -43,6 +66,12 @@ class RegistroCompletoForm(forms.ModelForm):
             'placeholder': 'Ingrese su Contraseña'
         }),
         label="Contraseña"
+        ,
+        
+        error_messages={
+            'required': 'Por favor completa este campo.',
+            'max_length': 'El nombre de usuario no puede superar los 100 caracteres.'
+        }
     )
 
     class Meta:
@@ -56,6 +85,26 @@ class RegistroCompletoForm(forms.ModelForm):
             'email': forms.EmailInput(attrs={
                 'class': 'controls',
                 'placeholder': 'Ingrese su Correo'
+            }),
+            'password': forms.EmailInput(attrs={
+                'class': 'controls',
+                'placeholder': 'Ingresa tu contrasena'
+            }),
+            'nombre_com': forms.EmailInput(attrs={
+                'class': 'controls',
+                'placeholder': 'ingresa tu nombre'
+            }),
+            'num_cel': forms.EmailInput(attrs={
+                'class': 'controls',
+                'placeholder': 'ingresa tu numero'
+            }),
+            'Na': forms.EmailInput(attrs={
+                'class': 'controls',
+                'placeholder': 'Nacionalidad'
+            }),
+            'fecha_nac': forms.EmailInput(attrs={
+                'class': 'controls',
+                'placeholder': 'FechaNaciomiento'
             }),
         }
 
@@ -79,18 +128,32 @@ class RegistroCompletoForm(forms.ModelForm):
 class LoginForm(forms.Form):
     username = forms.CharField(
         max_length=150,
-        label="Username",
+        label="Usuario",
         widget=forms.TextInput(attrs={
-            'placeholder': 'Enter Your Username',
-            'class': 'controls'  
+            'placeholder': 'Coloca tu usuario',
+            'class': 'controls',
+            'required': 'required'
         })
+        ,
+        
+        error_messages={
+            'required': 'Por favor completa este campo.',
+            'max_length': 'El nombre de usuario no puede superar los 100 caracteres.'
+        }
     )
     password = forms.CharField(
-        label="Password",
+        label="Contrasena",
         widget=forms.PasswordInput(attrs={
-            'placeholder': 'Enter Your Password',
-            'class': 'controls'  
+            'placeholder': 'Coloca tu contrasena',
+            'class': 'controls',
+            'required': 'required'
         })
+        ,
+        
+        error_messages={
+            'required': 'Por favor completa este campo.',
+            'max_length': 'El nombre de usuario no puede superar los 100 caracteres.'
+        }
     )
 
 class PagoUnicoForm(forms.ModelForm):

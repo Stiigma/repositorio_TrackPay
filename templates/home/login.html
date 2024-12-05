@@ -16,24 +16,89 @@
             </div>
             <form method="post">
                 {% csrf_token %}
+            
+                <!-- Mostrar errores generales (non_field_errors) -->
+                {% if form.non_field_errors %}
+                    <div class="alert alert-danger">
+                        {{ form.non_field_errors|join:" " }}
+                    </div>
+                {% endif %}
+            
+                <!-- Campo Username -->
                 <div class="input-field">
                     {{ form.username.label_tag }}
                     {{ form.username }}
                     <div class="underline"></div>
+            
+                    <!-- Mostrar errores del campo username -->
+                    {% if form.username.errors %}
+                        <div class="alert alert-danger">
+                            {{ form.username.errors|join:" " }}
+                        </div>
+                    {% endif %}
                 </div>
+            
+                <!-- Campo Password -->
                 <div class="input-field">
                     {{ form.password.label_tag }}
                     {{ form.password }}
                     <div class="underline"></div>
+            
+                    <!-- Mostrar errores del campo password -->
+                    {% if form.password.errors %}
+                        <div class="alert alert-danger">
+                            {{ form.password.errors|join:" " }}
+                        </div>
+                    {% endif %}
                 </div>
-
+            
+                <!-- Opciones adicionales -->
                 <a href="#" class="reset-password">Restablecer contraseña</a>
-                <a href= "{% url 'home' %}" class="reset-password">Regresar Inicio</a>
+                <a href="{% url 'home' %}" class="reset-password">Regresar Inicio</a>
+            
+                <!-- Botones -->
                 <div class="button-container">
                     <button type="submit" class="btn-primary">Iniciar</button>
                     <a href="{% url 'register' %}" class="btn-secondary">Registrarse</a>
                 </div>
             </form>
+            
+            <script>
+                document.addEventListener("DOMContentLoaded", function () {
+                    const form = document.querySelector("form");
+                    const usernameInput = document.querySelector("input[name='username']");
+                    const passwordInput = document.querySelector("input[name='password']");
+            
+                    form.addEventListener("submit", function (event) {
+                        let valid = true;
+            
+                        // Limpiar mensajes de error anteriores
+                        document.querySelectorAll(".error-message").forEach(el => el.remove());
+            
+                        // Validar campo de usuario
+                        if (!usernameInput.value) {
+                            valid = false;
+                            const error = document.createElement("div");
+                            error.className = "error-message alert alert-danger";
+                            error.textContent = "Por favor, ingresa tu usuario.";
+                            usernameInput.parentNode.appendChild(error);
+                        }
+            
+                        // Validar campo de contraseña
+                        if (!passwordInput.value) {
+                            valid = false;
+                            const error = document.createElement("div");
+                            error.className = "error-message alert alert-danger";
+                            error.textContent = "Por favor, ingresa tu contraseña.";
+                            passwordInput.parentNode.appendChild(error);
+                        }
+            
+                        if (!valid) {
+                            event.preventDefault(); // Evitar el envío del formulario si hay errores
+                        }
+                    });
+                });
+            </script>
         <div/>
     </main>
 </body>
